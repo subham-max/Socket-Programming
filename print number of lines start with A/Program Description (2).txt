@@ -1,0 +1,1 @@
+Write a socket program, using a reliable protocol, which will send a text file from a client end to the server end. The server will then print the number of lines, starting with ‘A’ to another file at its own end.

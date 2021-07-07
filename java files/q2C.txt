@@ -1,0 +1,21 @@
+import java.io.*;
+import java.net.*;
+
+class q2C{
+	public static void main(String args[])throws Exception{
+		Socket s = new Socket("localhost", 8989);
+		System.out.println("Connected to server!");
+		DataInputStream din = new DataInputStream(s.getInputStream());
+		String str = din.readUTF();
+		System.out.println("\nOriginal String : "+str+"\nReverse : "+reverse(str)+"\n");
+		din.close();
+		s.close();
+		System.out.println("Disconnected from server!");
+	}
+	static String reverse(String str){
+		String res = "";
+		for(int i=str.length()-1; i>=0; i--)
+			res += str.charAt(i);
+		return res;
+	}
+}

@@ -1,0 +1,3 @@
+1.Write a Java program to implement two-way communication between a server and a client through socket.
+ The communication will be initiated by the client and will be terminated when the server sends “Stop” message. 
+The messages at both ends will be taken from the console.

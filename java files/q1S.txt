@@ -1,0 +1,19 @@
+import java.io.*;
+import java.net.*;
+
+class q1S{
+	public static void main(String args[])throws Exception{
+		ServerSocket ss = new ServerSocket(8989);
+		System.out.println("Server Started!");
+		Socket s = ss.accept();
+		System.out.println("Client Connected!");
+		DataInputStream din = new DataInputStream(s.getInputStream());
+		String str = din.readUTF();
+		System.out.println("\nReceived message : "+str+"\nUppercase : "+str.toUpperCase()+"\n");
+		din.close();
+		s.close();
+		System.out.println("Client Disconnected!");
+		ss.close();
+		System.out.println("Server Shutdown!");
+	}
+}

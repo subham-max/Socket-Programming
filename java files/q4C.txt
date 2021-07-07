@@ -1,0 +1,31 @@
+import java.io.*;
+import java.net.*;
+
+class q4C{
+	public static void main(String args[])throws Exception{
+		Socket s = new Socket("localhost", 8989);
+		System.out.println("Connected to server!");
+		DataInputStream din = new DataInputStream(s.getInputStream());
+		DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+		int n = din.readInt(), c=0;
+		int arr[] = new int[n];
+		for(int i=0; i<n; i++){
+			int num = din.readInt();
+			if(!isPrime(num))
+				arr[c++] = num;
+		}
+		dout.writeInt(c);
+		for(int i=0; i<c; i++)
+			dout.writeInt(arr[i]);
+		s.close();
+		System.out.println("Disconnected from server!");
+	}
+	static boolean isPrime(int n){
+		if(n<2)
+			return false;
+		for(int i=2; i<=Math.sqrt(n); i++)
+			if(n%i==0)
+				return false;
+		return true;
+	}
+}

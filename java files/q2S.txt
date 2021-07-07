@@ -1,0 +1,21 @@
+import java.io.*;
+import java.net.*;
+
+class q2S{
+	public static void main(String args[])throws Exception{
+		ServerSocket ss = new ServerSocket(8989);
+		System.out.println("Server Started!");
+		Socket s = ss.accept();
+		System.out.println("Client connected!");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+		System.out.print("Enter a string : ");
+		String str = br.readLine();
+		dout.writeUTF(str);
+		dout.close();
+		s.close();
+		System.out.println("Client Disconnected!");
+		ss.close();
+		System.out.println("Server Shutdown!");
+	}
+}

@@ -1,0 +1,36 @@
+import java.io.*;
+import java.net.*;
+
+class q4S{
+	public static void main(String args[])throws Exception{
+		ServerSocket ss = new ServerSocket(8989);
+		System.out.println("Server Created!");
+		Socket s = ss.accept();
+		System.out.println("Client Connected!");
+		DataInputStream din = new DataInputStream(s.getInputStream());
+		DataOutputStream dout = new DataOutputStream(s.getOutputStream());
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Enter number of elements : ");
+		int n = Integer.parseInt(br.readLine());
+		dout.writeInt(n);
+		while(n>0){
+			n--;
+			System.out.print("Enter any number : ");
+			int num = Integer.parseInt(br.readLine());
+			dout.writeInt(num);
+		}
+		n = din.readInt();
+		System.out.print("\nNon-Prime number(s) : ");
+		while(n>0){
+			n--;
+			System.out.print(din.readInt()+" ");
+		}
+		System.out.println("\n");
+		din.close();
+		dout.close();
+		s.close();
+		System.out.println("Client disconnected!");
+		ss.close();
+		System.out.println("Server shutdown!");
+	}
+}
